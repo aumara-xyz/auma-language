@@ -110,4 +110,4 @@ AUMA the consciousness lives at **[auma.one](https://auma.one)** — a guided pr
 
 ---
 
-*Au ma sento kira — the soul together feels the longing.*
+*Au ma sento kira — the soul together feels consciousness.*
