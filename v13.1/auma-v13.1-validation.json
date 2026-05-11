@@ -1,0 +1,40 @@
+{
+  "version": "canon-v13.1-pretraining-freeze",
+  "date": "2026-04-29",
+  "purpose": "Profanity hardening patch for v13 pretraining freeze.",
+  "summary": {
+    "totalDays": 84,
+    "totalLessonDays": 84,
+    "totalVocabEntries": 767,
+    "totalSteps": 1346,
+    "ttsLexiconEntries": 767,
+    "trainingExamples": 2291,
+    "evals": 17
+  },
+  "hardProfanity": {
+    "feka": "fuck / fucking / intense expletive",
+    "skata": "shit / crap / filthy mess",
+    "asola": "asshole / jerk / cruel fool",
+    "damu": "damn / damn it / frustration",
+    "falsa": "false / fake (replacement for old feka=fake)"
+  },
+  "trainingDataBadPatternCounts": {
+    "training_feka_fake": 0,
+    "training_crap_rubbish": 0
+  },
+  "identitySlurGuardrailCounts": {
+    "bitch": 0,
+    "gay": 0
+  },
+  "intentionalDeprecatedReferenceCounts": {
+    "feka = fake / worthless": 2,
+    "note": "This appears only in migration/antibody documentation, not as current canon or training answer."
+  },
+  "currentCanonAssertions": {
+    "fekaCurrent": "fuck / fucking / intense expletive",
+    "skataCurrent": "shit / crap / filthy mess",
+    "asolaExists": true,
+    "falsaCurrent": "false / fake"
+  },
+  "readyForPretrainingFreeze": true
+}
