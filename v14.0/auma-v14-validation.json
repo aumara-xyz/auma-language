@@ -1,0 +1,27 @@
+{
+  "version": "canon-v14.0-assembled",
+  "date": "2026-05-13",
+  "purpose": "Merged v14 folder validation snapshot.",
+  "summary": {
+    "totalDays": 84,
+    "totalLessonDays": 84,
+    "totalBaseCanonVocab": 767,
+    "totalBridgeEntries": 144,
+    "totalPaladinEntries": 24,
+    "totalV14VocabEntries": 935,
+    "totalSteps": 1346,
+    "ttsLexiconEntries": 935,
+    "inheritedTrainingExamples": 2291,
+    "inheritedEvals": 17
+  },
+  "sourceStatus": {
+    "bridgeValidationStatus": "pass",
+    "paladinValidationStatus": "pass",
+    "paladinFinalEvalVerdict": "ready_for_epsilon_testing"
+  },
+  "carryForwardNotes": [
+    "Lessons and journey structure are inherited from v13.1.",
+    "Eval suite and training examples are copied forward from v13.1 unless separately revised.",
+    "Bridge and Paladin additions are assembled into this folder for one-place access."
+  ]
+}

@@ -2,6 +2,21 @@
 
 ---
 
+## v14.0 — Assembled Language Release
+**Date:** 2026-05-13
+
+- Assembled the current v14 language bundle into one public release folder
+- Preserved the base v13.1 canon and added:
+  - **144 bridge entries**
+  - **24 Paladin entries**
+- Resulting assembled lexicon size: **935 vocabulary entries**
+- Merged TTS lexicon updated to match the assembled v14 canon
+- Added a v14 validation snapshot with counts and assembly status
+- Added explicit honesty note that training/eval companions are **not yet fully refreshed for v14**
+- Moved carried-forward training/eval artifacts into `PENDING_REFRESH_FROM_V13_1/` to avoid mislabeling them as final v14-native files
+
+**Important status distinction:** v14.0 is the current assembled language release. v13.1 remains the last fully refreshed pretraining/eval freeze.
+
 ## v13.1 — Profanity Hardening Patch
 **Date:** 2026-04-29
 

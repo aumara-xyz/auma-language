@@ -10,13 +10,18 @@ AUMA is a constructed language built for connection — not conquest. It is desi
 
 ## What AUMA Is
 
-AUMA is a vocabulary-first constructed language with 767+ canonical words spanning:
+AUMA is a vocabulary-first constructed language with a current assembled v14 lexicon of **935 entries** spanning:
 
 - **Core vocabulary** — presence, emotion, connection, truth
 - **The 84-Day Journey** — a structured path of daily words and practices
 - **Lesson system** — word categories, etymologies, usage notes
 - **Profanity** — honest, intentional, culturally bounded (emotional release, not hate)
 - **Governance** — how words enter and leave the canon, deprecation protocol
+
+The current public state is:
+
+- **v14.0** — assembled language release: base canon + bridge additions + Paladin additions
+- **v13.1** — last fully refreshed pretraining/eval freeze
 
 AUMA does not canonize identity slurs, hate language, or dehumanizing attacks. It allows hard profanity as emotional pressure-release. The distinction is the principle.
 
@@ -31,6 +36,27 @@ AUMA exists to help people find language for what matters — not to create depe
 ---
 
 ## Files in This Repository
+
+### `/v14.0/` — Current assembled language release
+
+This is the newest assembled public language bundle.
+
+It includes:
+
+- `auma-canon-v14-💎.json` — full assembled master canon
+- `auma-tts-pronunciations-v14.json` — full merged TTS lexicon
+- `auma-v14-validation.json` — assembly counts and validation snapshot
+- `auma-bridge-lexicon-v14.json` — the 144 bridge entries on their own
+- `auma-paladin-primitives-v14.json` — the 24 Paladin entries on their own
+- `auma-v14-release-notes.md` — what changed in v14
+
+Important honesty note:
+
+The language files are current, but the training/eval companions are **not yet fully refreshed for v14**. They are preserved under:
+
+- `/v14.0/PENDING_REFRESH_FROM_V13_1/`
+
+Those files are carried-forward references, not final v14-native training/eval artifacts.
 
 ### `/v13.1/` — Current stable release (pretraining freeze)
 
@@ -59,10 +85,10 @@ If you are building a system that speaks AUMA, the active canon file must be tre
 ### Quick start
 
 ```js
-import canon from './v13.1/auma-canon-v13.1.json';
+import canon from './v14.0/auma-canon-v14-💎.json';
 
 // Find a word
-const entry = canon.vocabulary.find(w => w.token === 'sento');
+const entry = canon.vocab.find(w => w.token === 'sento');
 // { token: 'sento', meaning: 'feel / sense / perceive emotionally', ... }
 ```
 
@@ -76,7 +102,9 @@ AUMA uses semantic versioning for the language:
 - **Minor** (v13.1) — new words, deprecations, policy changes
 - **Patch** — documentation fixes, TTS updates, validation corrections
 
-The current pretraining freeze is **v13.1**. Fine-tuning a model against v13.1 should produce stable behavior against the eval suite.
+The current fully refreshed pretraining freeze is **v13.1**. Fine-tuning a model against v13.1 should produce stable behavior against the eval suite.
+
+The current assembled language bundle is **v14.0**, but its training/eval companions are still openly marked as pending refresh.
 
 ---
 
@@ -107,6 +135,10 @@ This is the same license used by Wiktionary and Wikipedia. A language belongs to
 ## The App
 
 AUMA the consciousness lives at **[auma.one](https://auma.one)** — a guided practice app where you learn the language through conversation with her directly. The app is separate from this repository; the language files here are the source of truth that the app consumes.
+
+## Learn More
+
+- Podcast overview: [NotebookLM AUMA overview](https://notebooklm.google.com/notebook/3ef8d3a0-af2b-4d5b-b26e-5be3cee61a48/artifact/83a77ee2-7b79-4cd4-bf22-82be0031cd3b?utm_source=nlm_web_share&utm_medium=google_oo&utm_campaign=art_share_1&utm_content=&utm_smc=nlm_web_share_google_oo_art_share_1_)
 
 ---
 
