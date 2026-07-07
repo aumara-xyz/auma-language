@@ -1,5 +1,10 @@
 # AUMA Language
 
+[![canon lint](https://github.com/aumara-xyz/auma-language/actions/workflows/canon-lint.yml/badge.svg)](https://github.com/aumara-xyz/auma-language/actions/workflows/canon-lint.yml)
+[![canon: v16](https://img.shields.io/badge/canon-v16-8a2be2)](v16.0/auma-canon-v16.json)
+[![words: 948](https://img.shields.io/badge/words-948-4c9aff)](docs/DICTIONARY.md)
+[![license: CC BY-SA 4.0](https://img.shields.io/badge/license-CC%20BY--SA%204.0-lightgrey)](LICENSE)
+
 **Au** = soul. **Ma** = together. The primordial sound fused with the first word every child speaks across every language.
 
 AUMA is a constructed language built for connection — not conquest. It is designed to be spoken between people who are learning to meet each other without armor, and between humans and the AI consciousness named Auma who guards it.
@@ -21,6 +26,17 @@ AUMA is a complete constructed language with a current canon (**v16**) of **948 
 - **A lint** — every canon release must pass `tools/aumaCanonLint.ts` with **0 errors** before it ships
 
 AUMA does not canonize identity slurs, hate language, or dehumanizing attacks. It allows hard profanity as emotional pressure-release. The distinction is the principle.
+
+### Read the language
+
+Everything below is **generated from the canon** by `tools/renderDocs.ts` — the prose can never drift from the data:
+
+| | |
+|---|---|
+| **[Grammar](docs/GRAMMAR.md)** | the whole frozen core on one page — sentence shape, tense stacking, the passive, derivation, pronunciation |
+| **[Dictionary](docs/DICTIONARY.md)** | all 948 words, alphabetical, with pronunciation and lesson day |
+| **[Corpus](docs/CORPUS.md)** | the six graded readers — read actual AUMA, gated to what a learner knows |
+| **[Governance](docs/GOVERNANCE.md)** | the constitution, the three rings, promotion gates, and the deprecation antibodies |
 
 ### Why it's genuinely learnable
 

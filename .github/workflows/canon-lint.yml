@@ -1,0 +1,21 @@
+# The gate: no canon change ships without a clean lint. Runs on every push and
+# PR that touches language data, tooling, or the generated docs.
+name: canon lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - name: canon lint (0 errors required)
+        run: bun tools/aumaCanonLint.ts
+      - name: docs are freshly generated from canon
+        run: |
+          bun tools/renderDocs.ts
+          git diff --exit-code docs/ || (echo '::error::docs/ drifted from the canon — run: bun tools/renderDocs.ts' && exit 1)

@@ -1,0 +1,37 @@
+name: "Propose a deprecation"
+description: "Ask for a word to leave the canon. Deprecations are serious — antibodies, training data, and curriculum all follow."
+title: "[deprecate] "
+labels: ["proposal: deprecation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A deprecated word is not AUMA even if a model says it. Every accepted deprecation becomes
+        an **antibody** (see the table in [GOVERNANCE](../blob/main/docs/GOVERNANCE.md)) so teachers —
+        human or model — correct it gently. Do not propose lightly.
+  - type: input
+    id: token
+    attributes:
+      label: Token to deprecate
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why
+      description: "Meaning collision, phonetic confusion (name the one-edit neighbours), cultural harm, or superseded by a better word."
+    validations:
+      required: true
+  - type: input
+    id: replacement
+    attributes:
+      label: Proposed replacement token (if any)
+    validations:
+      required: false
+  - type: textarea
+    id: migration
+    attributes:
+      label: Migration note
+      description: "What existing speakers, texts, and models should do. Which lesson days and readers are affected?"
+    validations:
+      required: true

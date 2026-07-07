@@ -1,0 +1,30 @@
+name: "Report canon drift"
+description: "AUMA being spoken incorrectly — by a model, in training data, in documentation. Fast track."
+title: "[drift] "
+labels: ["bug: canon drift"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Drift reports are bugs, not proposals — they get the fast track. The canon JSON is the
+        source of truth over any model's weights and any document, including this repo's own docs.
+  - type: input
+    id: incorrect
+    attributes:
+      label: The incorrect form you encountered
+    validations:
+      required: true
+  - type: input
+    id: correct
+    attributes:
+      label: The correct canonical form
+      description: "Check docs/DICTIONARY.md or the canon JSON."
+    validations:
+      required: true
+  - type: textarea
+    id: where
+    attributes:
+      label: Where you found it
+      description: "App, chat, training file, doc — with enough detail to reproduce."
+    validations:
+      required: true

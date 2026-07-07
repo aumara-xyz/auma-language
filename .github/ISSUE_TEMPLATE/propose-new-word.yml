@@ -1,0 +1,76 @@
+name: "Propose a new word"
+description: "Offer a word to the community garden. All fields are required — clarity, not gatekeeping."
+title: "[word] "
+labels: ["proposal: new word"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A word is not AUMA until it is in the canon. Proposals move through the garden:
+        `community_garden` → `candidate` → `accepted_canon` — see [GOVERNANCE](../blob/main/docs/GOVERNANCE.md)
+        for the promotion gates. Check the [DICTIONARY](../blob/main/docs/DICTIONARY.md) first: the gap
+        must be real, and not better handled by a transparent compound.
+  - type: input
+    id: token
+    attributes:
+      label: Token
+      description: "The word, all lowercase, AUMA phonology only (no c, q, x)."
+      placeholder: "example: brilo"
+    validations:
+      required: true
+  - type: input
+    id: meaning
+    attributes:
+      label: Intended meaning
+      placeholder: "primary English meaning, brief"
+    validations:
+      required: true
+  - type: input
+    id: pos
+    attributes:
+      label: Part of speech
+      placeholder: "noun / verb / descriptor / particle / exclamation"
+    validations:
+      required: true
+  - type: input
+    id: pronunciation
+    attributes:
+      label: Pronunciation
+      description: "Respelling in the canon style (see any dictionary entry)."
+      placeholder: "bree-loh"
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Example sentences
+      description: "At least one natural sentence using it, with English."
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it belongs
+      description: "What real gap it fills — and why a transparent compound can't cover it."
+    validations:
+      required: true
+  - type: textarea
+    id: collisions
+    attributes:
+      label: Collision check
+      description: "Nearest existing tokens (one edit away), and any unfortunate meanings in major natural languages."
+    validations:
+      required: true
+  - type: input
+    id: day
+    attributes:
+      label: Suggested introduction day (1–84, or 'recognition')
+    validations:
+      required: false
+  - type: textarea
+    id: cultural
+    attributes:
+      label: Cultural note
+      description: "Any cultural weight, sensitivity, or boundary to name. AUMA does not canonize slurs or dehumanizing language."
+    validations:
+      required: false
