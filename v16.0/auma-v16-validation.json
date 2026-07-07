@@ -1,0 +1,43 @@
+{
+ "version": "canon-v16",
+ "date": "2026-07-07",
+ "purpose": "Machine-generated v16 validation snapshot. Produced alongside a clean run of tools/aumaCanonLint.ts (0 errors).",
+ "lint": {
+  "tool": "tools/aumaCanonLint.ts",
+  "errors": 0,
+  "informationalWarnings": [
+   "day 39 heavy load (21 cards)",
+   "day 83 heavy load (36 cards)",
+   "confusability metric: 68 near-homophone pairs within 2 days",
+   "readers: 6 graded readers validated against day gates"
+  ]
+ },
+ "summary": {
+  "totalDays": 84,
+  "totalVocabEntries": 948,
+  "totalSteps": 1464,
+  "totalQuizzes": 354,
+  "totalWordCards": 847,
+  "teachingModes": {
+   "card": 846,
+   "pattern": 26,
+   "recognition": 76
+  },
+  "gradedReaders": 6,
+  "readerLines": 79,
+  "sacredCore": 6,
+  "deprecatedFormAntibodies": 16
+ },
+ "guarantees": [
+  "no duplicate tokens",
+  "ttsKey === token on every entry",
+  "no word used in a card sentence or correct quiz answer before its introduction day",
+  "no deprecated form in any teaching surface",
+  "every graded reader respects its declared maxDay",
+  "journey wordCounts and stats match the actual lesson data"
+ ],
+ "carryForwardNotes": [
+  "Training/eval companions (JSONL examples, eval suite) remain v13.1-era and are pending a v16-native refresh; v16 is the machine-clean base that refresh should be generated from.",
+  "TTS pronunciation is embedded per-entry (pronunciation + ttsKey) — no separate TTS lexicon file needed from v16 onward."
+ ]
+}

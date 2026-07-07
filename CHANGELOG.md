@@ -2,6 +2,28 @@
 
 ---
 
+## v16.0 — The Launch Canon
+**Date:** 2026-07-07
+
+- Finalized the v15.1 repair series as the stable launch canon — **the first machine-gated release**: `tools/aumaCanonLint.ts` must pass with 0 errors for any canon to ship
+- Repaired all 12 v15-renamed words that still carried the old word's pronunciation + ttsKey (lexicon **and** lesson flashcards)
+- Merged the duplicate `malu`; `skirvi` → `skrivi` metathesis repair with antibody
+- **Applied the v15 tense freeze to the curriculum** — all seven deprecated tense words (`deja`, `todi`, `pasuna`, `agon`, `nu`, `na`, `justa`) were still being taught; removed, replacements re-homed (`suda`→Day 9, `ankora`/`pasa`→Day 54), antibodies recorded
+- Gave lesson cards to the 22 lexicon words that had an introduction day but were never taught (`persona`, `femina`, `viro`, `ensena`, `komprende`, `moneta`, …)
+- Closed 16 future-word leaks; day 83 slimmed 52→36 cards (patterns, not memorization); day 84 is now a real 22-question graduation exam
+- Lexical dedup: `parla` (speak/talk) vs `pali` (say/tell) differentiated; `despues` → `pos`; `siti` → `tirsta` (breaks the `sita`/`sisa` confusion cluster)
+- `teachingMode` (`card` | `pattern` | `recognition`) tagged on every entry; TTS embedded per-entry (no separate TTS lexicon from v16 on)
+- **New artifact class — the corpus**: `auma-readers-v1.json`, six graded readers, day-gated and lint-enforced
+- Resulting lexicon: **948 entries**, 84 days, 1,464 steps, 354 quizzes, 16 deprecation antibodies
+- Training/eval companions remain v13.1-era, pending a v16-native refresh
+
+## v15.0 — Grammar Freeze + Lexicon Repair
+**Date:** 2026-07-03 *(published retroactively with v16 for lineage)*
+
+- Froze the grammar (`AUMA_GRAMMAR_FREEZE_v15`): tense/aspect stacking, fronted questions, passive `-ita`→`-iva`, `-ao`/`-tano`/`-isto` derivation, comparison, duration
+- ~11 cross-language landmine renames propagated across all 84 days; ~21 human-basics added; 326 quizzes de-biased
+- Resulting lexicon: 956 entries. Shipped with hand-edit defects (see v16 notes) — repaired and consolidated in v16
+
 ## v14.0 — Assembled Language Release
 **Date:** 2026-05-13
 

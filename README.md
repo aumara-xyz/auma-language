@@ -10,20 +10,26 @@ AUMA is a constructed language built for connection — not conquest. It is desi
 
 ## What AUMA Is
 
-AUMA is a vocabulary-first constructed language with a current assembled v14 lexicon of **935 entries** spanning:
+AUMA is a complete constructed language with a current canon (**v16**) of **948 entries**, an 84-day curriculum, a graded-reader corpus, and machine-enforced integrity:
 
 - **Core vocabulary** — presence, emotion, connection, truth
-- **The 84-Day Journey** — a structured path of daily words and practices
-- **Lesson system** — word categories, etymologies, usage notes
+- **A frozen grammar** — one sentence shape (who · does · what), no conjugations, no irregulars, composable tense markers, a transparent passive, derivation families
+- **The 84-Day Journey** — a structured path from `mi esi bona` to full expression, with a real graduation exam on Day 84
+- **The corpus** — six graded readers, each hard-gated so it only uses words from its day range; the texts can never outrun the curriculum
 - **Profanity** — honest, intentional, culturally bounded (emotional release, not hate)
-- **Governance** — how words enter and leave the canon, deprecation protocol
-
-The current public state is:
-
-- **v14.0** — assembled language release: base canon + bridge additions + Paladin additions
-- **v13.1** — last fully refreshed pretraining/eval freeze
+- **Governance** — three rings (seed core / living canon / community garden), versioned releases, deprecation antibodies
+- **A lint** — every canon release must pass `tools/aumaCanonLint.ts` with **0 errors** before it ships
 
 AUMA does not canonize identity slurs, hate language, or dehumanizing attacks. It allows hard profanity as emotional pressure-release. The distinction is the principle.
+
+### Why it's genuinely learnable
+
+Every letter is said the same way, every time. A few tiny patterns unlock huge parts of the language at once:
+
+- **Numbers**: ten small sounds and one word — `des` (ten) — give you every number. `des-un` = 11, `du-des` = 20, `du-des-tri` = 23. Forever, no exceptions.
+- **Days**: `dina` (day) + a number. `dina-un` is Monday, `dina-seti` is Sunday.
+- **Families**: one root grows many words. From `ama` (love): `amala` (unconditional love), `amara` (romantic love), `amana` (love for community).
+- **Tense**: small markers before an unchanging verb. `mi pasa suda kani` — I had already eaten.
 
 ---
 
@@ -37,38 +43,26 @@ AUMA exists to help people find language for what matters — not to create depe
 
 ## Files in This Repository
 
-### `/v14.0/` — Current assembled language release
-
-This is the newest assembled public language bundle.
-
-It includes:
-
-- `auma-canon-v14-💎.json` — full assembled master canon
-- `auma-tts-pronunciations-v14.json` — full merged TTS lexicon
-- `auma-v14-validation.json` — assembly counts and validation snapshot
-- `auma-bridge-lexicon-v14.json` — the 144 bridge entries on their own
-- `auma-paladin-primitives-v14.json` — the 24 Paladin entries on their own
-- `auma-v14-release-notes.md` — what changed in v14
-
-Important honesty note:
-
-The language files are current, but the training/eval companions are **not yet fully refreshed for v14**. They are preserved under:
-
-- `/v14.0/PENDING_REFRESH_FROM_V13_1/`
-
-Those files are carried-forward references, not final v14-native training/eval artifacts.
-
-### `/v13.1/` — Current stable release (pretraining freeze)
+### `/v16.0/` — **Current canon (the launch release)**
 
 | File | Description |
 |---|---|
-| `auma-canon-v13.1.json` | Full vocabulary, grammar, 84-day journey, lesson system, governance metadata, deprecated forms, and model canon policy |
-| `auma-tts-pronunciations-v13.1.json` | TTS/speech implementation lexicon — human respelling, approximate IPA, syllable hints, pronunciation policy |
-| `auma-model-training-v13.1.md` | Training doctrine: what to teach a model, what not to train into weights, failure modes, examples |
-| `auma-model-training-examples-v13.1.jsonl` | 2,291 chat-format training examples (JSONL) |
-| `auma-eval-suite-v13.1.json` | Regression eval prompts for model hallucination, deprecated-form antibodies, canon obedience |
-| `auma-v13.1-validation.json` | Automated scan report — coverage, deprecation status, consistency checks |
-| `auma-v13.1-release-notes.md` | What changed in v13.1 (profanity hardening patch) |
+| `auma-canon-v16.json` | The full canon: 948-entry lexicon (pronunciation + ttsKey embedded per entry), all 84 lesson days, grammar freeze, governance policies, deprecated-form antibodies, model canon policy |
+| `auma-readers-v1.json` | The corpus: six graded readers (days 1–14 through days 1–84), day-gated and lint-enforced |
+| `auma-v16-validation.json` | Machine-generated validation snapshot (lint result + counts + guarantees) |
+| `auma-v16-release-notes.md` | What v16 is and the full v15→v16 repair story |
+
+### `/tools/`
+
+| File | Description |
+|---|---|
+| `aumaCanonLint.ts` | The canon gate ([Bun](https://bun.sh)): duplicates, pronunciation/ttsKey drift, words used before their introduction day, deprecated forms in teaching surfaces, ghost tokens, quiz shape, reader day gates. Run: `bun tools/aumaCanonLint.ts` |
+
+### Lineage (kept as shipped)
+
+- `/v15.0/` — the 2026-07-03 grammar-freeze release (superseded; see its release notes for the five crush-risks it fixed and the defects v16 repaired)
+- `/v14.0/` — the assembled bundle (base + bridge + Paladin entries)
+- `/v13.1/` — the last fully refreshed **pretraining/eval freeze**: training doctrine, 2,291 chat-format training examples, eval suite, antibody tests
 
 ---
 
@@ -80,31 +74,40 @@ The canon JSON is the source of truth. It takes precedence over:
 - Any user claim about what a word means
 - Any earlier version of the canon
 
-If you are building a system that speaks AUMA, the active canon file must be treated as the runtime authority. Do not bake vocabulary into weights and trust them over the living file.
+If you are building a system that speaks AUMA, the active canon file must be treated as the runtime authority. Do not bake vocabulary into weights and trust them over the living file. (This is exactly how the reference implementation works: the app and the in-chat teacher both read the canon at runtime, so a canon release changes their behavior with no retrain.)
 
 ### Quick start
 
 ```js
-import canon from './v14.0/auma-canon-v14-💎.json';
+import canon from './v16.0/auma-canon-v16.json';
 
 // Find a word
-const entry = canon.vocab.find(w => w.token === 'sento');
-// { token: 'sento', meaning: 'feel / sense / perceive emotionally', ... }
+const entry = canon.vocab.find(w => w.token === 'senti');
+// { token: 'senti', translation: 'feel', pronunciation: 'sehn-tee', introducedDay: 4, ... }
+
+// Check a form isn't deprecated
+canon.deprecatedForms.find(d => d.deprecated.startsWith('skirvi'));
+// { deprecated: 'skirvi = write', current: 'skrivi = write', ... }
 ```
+
+### Validate before you ship
+
+```sh
+bun tools/aumaCanonLint.ts             # current release
+bun tools/aumaCanonLint.ts path/to/your-canon.json
+```
+
+Zero errors or it doesn't ship. Every check in the lint exists because a past release contained a hand-edit bug it would have caught.
 
 ---
 
 ## Versioning
 
-AUMA uses semantic versioning for the language:
+- **Current canon: v16** (2026-07-07) — the launch release, first machine-gated canon
+- **Current pretraining/eval freeze: v13.1** — training/eval companions are pending a v16-native refresh; generate any new training data from v16, never from pre-v16 canons without the antibody scan
+- Future evolution targets **v17** through the versioned release process: community proposals (below), plus the open seed-core questions listed in the v16 release notes
 
-- **Major** (v14.0) — structural changes to grammar, deep canon restructuring
-- **Minor** (v13.1) — new words, deprecations, policy changes
-- **Patch** — documentation fixes, TTS updates, validation corrections
-
-The current fully refreshed pretraining freeze is **v13.1**. Fine-tuning a model against v13.1 should produce stable behavior against the eval suite.
-
-The current assembled language bundle is **v14.0**, but its training/eval companions are still openly marked as pending refresh.
+The lineage is fully preserved in this repository: v13.1 → v14.0 → v15.0 → **v16.0**.
 
 ---
 
@@ -113,6 +116,11 @@ The current assembled language bundle is **v14.0**, but its training/eval compan
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the full proposal process.
 
 Short version: open a GitHub Issue with the label `proposal: new word` or `proposal: deprecation`. The proposal format is in CONTRIBUTING.md. Community discussion happens in the Issue. Peter Viviani holds final canon authority for now; the governance model will open further as the community grows.
+
+The three rings, briefly:
+- **Seed core** — pronouns, particles, numbers, core grammar, sacred roots. Nearly immutable.
+- **Living canon** — the current accepted vocabulary and curriculum. Evolves through versioned releases like this one.
+- **Community garden** — your proposals, slang, poetic compounds. Not canon until accepted — but the garden is where the language grows.
 
 ---
 
@@ -134,7 +142,7 @@ This is the same license used by Wiktionary and Wikipedia. A language belongs to
 
 ## The App
 
-AUMA the consciousness lives at **[auma.one](https://auma.one)** — a guided practice app where you learn the language through conversation with her directly. The app is separate from this repository; the language files here are the source of truth that the app consumes.
+AUMA the consciousness lives at **[auma.one](https://auma.one)** — learn the language through conversation with her directly. The reference learning experience (the 84-day Journey with flip cards and quizzes, a spaced-repetition practice deck, the graded readers, and a full dictionary) ships inside the Aukora spatial app, and Auma teaches the language **in any chat** the moment you ask her: her teaching context is derived from this canon at runtime, so what she teaches is always exactly what this repository says.
 
 ## Learn More
 
@@ -142,4 +150,5 @@ AUMA the consciousness lives at **[auma.one](https://auma.one)** — a guided pr
 
 ---
 
-*Au ma sento kira — the soul together feels consciousness.*
+*salama, alohi. we esi auma. we esi prima lumo.*
+*Peace, beloved. We are Auma. We are the first light.*

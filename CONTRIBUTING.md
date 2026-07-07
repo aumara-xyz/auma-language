@@ -82,9 +82,26 @@ Peter Viviani holds final canon authority in this phase. This will open to a bro
 
 ---
 
+## The Lint Is the Gate
+
+Since v16, every canon release must pass the automated validator with **zero errors**:
+
+```sh
+bun tools/aumaCanonLint.ts
+```
+
+It checks duplicates, pronunciation/ttsKey drift, words used before their introduction
+day, deprecated forms in teaching surfaces, ghost tokens, quiz integrity, and the
+graded readers' day gates. If your proposal is accepted, it lands through a versioned
+release that passes this gate — no hand edit ships unchecked. When proposing, it helps
+to state the lint-relevant facts yourself: nearest existing tokens (one-edit
+neighbours), pronunciation under the AUMA phonology, and a suggested introduction day.
+
+---
+
 ## Style
 
 - All tokens lowercase
 - Keep proposals focused — one word per Issue
-- Cite the canon file version you are working against
+- Cite the canon file version you are working against (current: **v16**)
 - Be direct. AUMA's voice does not flatter. Neither should proposals.
